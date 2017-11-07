@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Branches;
-use backend\modelsBranchesSearch;
+use backend\models\BranchesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class BranchesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new modelsBranchesSearch();
+        $searchModel = new BranchesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -66,7 +66,7 @@ class BranchesController extends Controller
         $model = new Branches();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->branch_created_date = date('Y-m-d H:m:s');
+            $model->branch_created_date = date('Y-m-d H:m:s');    //添加日期
             $model->save();
             return $this->redirect(['view', 'id' => $model->branch_id]);
         } else {
