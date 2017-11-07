@@ -9,14 +9,16 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="companies-form">
-
-    <?php $form = ActiveForm::begin(); ?>
+    <!--上传文件必须添加这一句-->
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'company_email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'company_address')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'file')->fileInput() ?>
 
     <?= $form->field($model, 'company_status')->dropDownList([ 'active' => 'Active', 'inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
 

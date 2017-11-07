@@ -19,6 +19,8 @@ use Yii;
  */
 class Companies extends \yii\db\ActiveRecord
 {
+    public $file;   // 添加 logo 图片的文件属性
+
     /**
      * @inheritdoc
      */
@@ -35,7 +37,8 @@ class Companies extends \yii\db\ActiveRecord
         return [
             [['company_created_date'], 'safe'],
             [['company_status'], 'string'],
-            [['company_name', 'company_email', 'company_address'], 'string', 'max' => 100],
+            [['company_name', 'company_email', 'company_address', 'logo'], 'string', 'max' => 100],
+            [['file'], 'file'],
         ];
     }
 
@@ -49,6 +52,7 @@ class Companies extends \yii\db\ActiveRecord
             'company_name' => 'Company Name',
             'company_email' => 'Company Email',
             'company_address' => 'Company Address',
+            'file' => 'Logo',
             'company_created_date' => 'Company Created Date',
             'company_status' => 'Company Status',
         ];
