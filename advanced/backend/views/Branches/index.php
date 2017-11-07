@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\BranchesSearch */
@@ -18,6 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Branches', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+<!-- 使用 Pjax 开始-->
+<!-- 使用Pjax 指的是整个页面不用刷新，就进行了搜索，燕十八说：pjax 并不是解决 ajax 跨页面的问题，他没有用到XHR-->
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -27,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=> 'companies_company_id',   //添加搜索框
                     'value' => 'companiesCompany.company_name',
             ],
-
             'branch_name',
             'branch_address',
             'branch_created_date',
@@ -36,4 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end(); ?>
+    <!-- 使用 Pjax 结束-->
 </div>
