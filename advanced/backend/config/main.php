@@ -11,7 +11,13 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+
+    // 自己的模块配置
+    'modules' => [
+        'settings' => [
+            'class' => 'backend\modules\settings\Settings',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
