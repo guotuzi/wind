@@ -6,6 +6,7 @@ use Yii;
 use backend\models\Companies;
 use backend\models\CompaniesSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;  //抛出 Forbidden 异常
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
@@ -64,25 +65,30 @@ class CompaniesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Companies();
+        if(Yii::$app->user->can( 'create-company' ))
+        {
+            $model = new Companies();
+            if ($model->load(Yii::$app->request->post())) {
 
-        if ($model->load(Yii::$app->request->post())) {
+                // 保存文件
+                $imageName = $model-> company_name;
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->file->saveAs('Uploads/'. $imageName . '.' . $model->file->extension);
+                // 将文件路径保存到数据库
+                $model->logo = 'Uploads/'. $imageName . $model->file->extension;
+                //添加日期
+                $model->company_created_date = date('Y-m-d H:m:s');
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->company_id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
 
-            // 保存文件
-            $imageName = $model-> company_name;
-            $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('Uploads/'. $imageName . $model->file->extension);
-
-            // 将文件路径保存到数据库
-            $model->logo = 'Uploads/'. $imageName . $model->file->extension;
-
-            $model->company_created_date = date('Y-m-d H:m:s');    //添加日期
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->company_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        } else
+        {
+            throw new ForbiddenHttpException;
         }
     }
 

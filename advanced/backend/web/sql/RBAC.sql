@@ -19,7 +19,7 @@ CREATE TABLE 'auth_item' (
   'rule_name' VARCHAR(64),
   'data' TEXT,
   'created_at' INTEGER,
-  'update_at' INTEGER,
+  'updated_at' INTEGER,
   PRIMARY KEY ('name'),
   FOREIGN KEY ('rule_name') REFERENCES 'auth_rule' ('name') ON DELETE SET NULL ON UPDATE CASCADE ,
   KEY 'type' ('type')

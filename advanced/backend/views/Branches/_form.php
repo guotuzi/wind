@@ -15,10 +15,6 @@ use kartik\select2\Select2;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'companies_company_id')->dropDownList(
-        ArrayHelper::map( Companies::find()->all(),'company_id', 'company_name'),
-        ['prompt' => 'Select Company'] //下拉框写法
-      ) ?>
     <!--select 2 使用开始-->
     <?= $form->field($model, 'companies_company_id')->widget(Select2::classname(), [
         'data' => ArrayHelper::map( Companies::find()->all(),'company_id', 'company_name'),

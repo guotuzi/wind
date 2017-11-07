@@ -40,6 +40,14 @@ return [
                 ],
             ],
         ],
+
+        // RBAC 权限控制配置
+        'authManager' =>
+        [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
