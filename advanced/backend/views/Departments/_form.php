@@ -15,15 +15,23 @@ use backend\models\Branches;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'companies_company_id')->dropDownList(
+    <?= $form->field($model, 'companies_company_id')->dropDownList(          //下拉框写法
         ArrayHelper::map( Companies::find()->all(),'company_id', 'company_name'),
-        ['prompt' => 'Select Company']  //下拉框写法
-    ) ?>
+        [
+            'prompt' => 'Select Company',
 
-    <?= $form->field($model, 'branches_branch_id')->dropDownList(
-        ArrayHelper::map( Branches::find()->all(),'branch_id', 'branch_name'),
-        ['prompt' => 'Select Branch']  //下拉框写法
-    ) ?>
+         // 上下联动下拉框，发送post 到 controller(好像用的jquery post 发送)
+            'onchange' => '
+                    $.post("index.php?r=branches/lists&id='.'"+$(this).val(), function( data) {  
+                       $( "select#departments-branches_branch_id").html( data );
+              });'
+        ]) ?>
+
+    <?= $form->field($model, 'branches_branch_id')->dropDownList(          //下拉框写法
+        ArrayHelper::map( Branches::find()->all(),'branch_id', 'branch_id'),
+        [
+            'prompt' => 'Select Branch',
+         ])  ?>
 
     <?= $form->field($model, 'department_name')->textInput(['maxlength' => true]) ?>
 

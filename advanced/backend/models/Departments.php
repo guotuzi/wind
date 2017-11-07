@@ -33,8 +33,8 @@ class Departments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['branches_branch_id', 'companies_company_id'], 'integer'],
-            [['department_created_date'], 'safe'],
+            [[ 'companies_company_id'], 'integer'],
+            [['branches_branch_id','department_created_date'], 'safe'],
             [['department_status'], 'string'],
             [['department_name'], 'string', 'max' => 100],
             [['companies_company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Companies::className(), 'targetAttribute' => ['companies_company_id' => 'company_id']],

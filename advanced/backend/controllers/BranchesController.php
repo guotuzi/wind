@@ -115,6 +115,28 @@ class BranchesController extends Controller
         return $this->redirect(['index']);
     }
 
+
+    // departments create 页面的 联动下拉菜单
+    public function actionLists($id){
+        $countBranches = Branches::find()
+            ->where(['companies_company_id' => $id])
+            ->count();
+
+        $branches = Branches::find()
+            ->where(['companies_company_id' => $id])
+            ->all();
+
+        if($countBranches>0){
+            foreach ($branches as $branch){
+                echo "<option value=" . $branch->branch_id . "'>" . $branch->branch_name . "</potion>";
+            }
+        } else {
+            echo "<option>-</option>";
+        }
+    }
+
+
+
     /**
      * Finds the Branches model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
