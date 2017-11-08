@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,6 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
+
+            <!--添加权限复选框开始-->
+                <?php
+                    $authItems = ArrayHelper::map ($authItems, 'name', 'name');   // 两个name 分别是 key and value
+                ?>
+                <?= $form->field($model,'permissions')->checkboxList($authItems) ?>
+            <!--添加权限复选框结束-->
 
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

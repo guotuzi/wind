@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\AuthItem;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -149,6 +150,7 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+        $authItems = AuthItem::find()->all();      // 用于权限复选框处
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -159,6 +161,7 @@ class SiteController extends Controller
 
         return $this->render('signup', [
             'model' => $model,
+            'authItems' => $authItems,
         ]);
     }
 
