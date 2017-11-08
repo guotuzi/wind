@@ -26,6 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+        // 添加背景色开始
+        'rowOptions'=>function($model){
+            if($model-> branch_status == 'inactive')
+            {
+                return ['class' => 'danger'];
+            } else
+            {
+                return ['class' => 'success'];
+            }
+        },
+        // 添加背景色结束
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
@@ -35,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'branch_name',
             'branch_address',
             'branch_created_date',
-            // 'branch_status',
+            'branch_status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
