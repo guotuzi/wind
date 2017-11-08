@@ -36,10 +36,32 @@ class Companies extends \yii\db\ActiveRecord
         return [
             [['company_start_date'], 'required'],
             [['company_start_date', 'company_created_date'], 'safe'],
+
+            //限制日期的输入大小；
+            ['company_created_date', 'checkDate'],  // checkDate 是一个函数，自己写‘
+
             [['company_status'], 'string'],
             [['company_name', 'company_email', 'company_address'], 'string', 'max' => 100],
         ];
     }
+
+
+    /**
+     * company_start_date 的验证函数
+     * @param $attribute
+     * @param $params
+     */
+    public function checkDate($attribute, $params){
+        $tody = date('Y-m-d');
+        $selectedDate = date($this->company_start_date);
+        if($selectedDate > $tody){
+            $this->addError($attribute, 'Company Start Date Must be smaller');
+        }
+    }
+
+
+
+
 
     /**
      * @inheritdoc
@@ -56,6 +78,7 @@ class Companies extends \yii\db\ActiveRecord
             'company_status' => 'Company Status',
         ];
     }
+
 
     /**
      * @return \yii\db\ActiveQuery

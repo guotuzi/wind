@@ -11,7 +11,8 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="companies-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<!--    --><?php //$form = ActiveForm::begin(['enableAjaxValidation'=>true]); ?><!--   -->
+    <?php $form = ActiveForm::begin(); ?>    <!--开启基于AJAX的验证可用, Ajax 发送到后台-->
 
     <?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?>
 

@@ -65,6 +65,14 @@ class CompaniesController extends Controller
     {
         $model = new Companies();
 
+        /*
+        // 限制日期输入的地方，
+        // 调用 model 中的 validate (), 这个地方有问题，还没解决，报500错：no-referrer-when-downgrade
+        if(Yii::$app->request->isAjax && $model->load($_POST)){
+            Yii::$app->response->format = 'json';               // 返回JSON格式
+            return \yii\widgets\ActiveForm::validate($model);   // 验证model
+        } */
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->company_id]);
         } else {
