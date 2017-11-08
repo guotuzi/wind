@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Branches;
 use Yii;
 use backend\models\Companies;
 use backend\models\CompaniesSearch;
@@ -68,21 +69,33 @@ class CompaniesController extends Controller
         if(Yii::$app->user->can( 'create-company' ))
         {
             $model = new Companies();
-            if ($model->load(Yii::$app->request->post())) {
+            $branch = new Branches();
 
-                // 保存文件
-                $imageName = $model-> company_name;
-                $model->file = UploadedFile::getInstance($model, 'file');
-                $model->file->saveAs('Uploads/'. $imageName . '.' . $model->file->extension);
-                // 将文件路径保存到数据库
-                $model->logo = 'Uploads/'. $imageName . $model->file->extension;
+            if ($model->load(Yii::$app->request->post()) && $branch->load(Yii::$app->request->post())) {
+
+                if(!empty($model->file)){
+                    // 保存文件
+                    $imageName = $model-> company_name;
+                    $model->file = UploadedFile::getInstance($model, 'file');
+                    $model->file->saveAs('Uploads/'. $imageName . '.' . $model->file->extension);
+                    // 将文件路径保存到数据库
+                    $model->logo = 'Uploads/'. $imageName . $model->file->extension;
+                }
+
                 //添加日期
                 $model->company_created_date = date('Y-m-d H:m:s');
                 $model->save();
+
+                // 添加 数据到数据库 branch 表格
+                 $branch->companies_company_id = $model->company_id;
+                 $branch->branch_created_date = date('Y-m-d H:m:s');
+                 $branch->save();
+
                 return $this->redirect(['view', 'id' => $model->company_id]);
             } else {
                 return $this->render('create', [
                     'model' => $model,
+                    'branch' => $branch,
                 ]);
             }
 

@@ -22,6 +22,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'company_status')->dropDownList([ 'active' => 'Active', 'inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
 
+
+
+<!--    ===========Create Branch For This Company 开始=============-->
+<!--    ===========Create Branch For This Company 开始=============-->
+<!--    ===========Create Branch For This Company 开始=============-->
+
+
+    <?= $form->field($branch, 'branch_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($branch, 'branch_address')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($branch, 'branch_status')->dropDownList([ 'active' => 'Active', 'inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
+
+    <!--    ===========Create Branch For This Company 结束=============-->
+    <!--    ===========Create Branch For This Company 结束=============-->
+
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
