@@ -51,6 +51,15 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
+        // 收发邮件扩展
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,     //这句一定有，false发送邮件，true只是生成邮件在runtime文件夹下，不发邮件
+        ]
+
+
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
