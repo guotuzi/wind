@@ -55,7 +55,7 @@ class Companies extends \yii\db\ActiveRecord
         $tody = date('Y-m-d');
         $selectedDate = date($this->company_start_date);
         if($selectedDate > $tody){
-            $this->addError($attribute, 'Company Start Date Must be smaller');
+            $this->addError($attribute, 'Company Start Date Must be smaller ……');
         }
     }
 
