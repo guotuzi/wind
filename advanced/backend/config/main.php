@@ -17,6 +17,12 @@ return [
         'settings' => [
             'class' => 'backend\modules\settings\Settings',
         ],
+
+        // yii2-grid view 的配置
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
+
     ],
     'components' => [
         'request' => [

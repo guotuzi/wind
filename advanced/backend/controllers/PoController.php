@@ -68,7 +68,7 @@ class PoController extends Controller
         $model = new Po();
         $modelsPoItem = [new PoItem ];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
 
             // dynamic form 的controller
             $modelsPoItem = Model::createMultiple(PoItem::classname());
