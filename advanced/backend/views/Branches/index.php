@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\bootstrap\Modal;     //使用 pop up 弹出框的
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\BranchesSearch */
@@ -16,9 +18,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+
+    <!--Pop up 弹出层效果开始(还要在asset 中配置，js 文件在 web->js->main.js)
+    <!--    创建一个按钮，用于调modal的显示-->
     <p>
-        <?= Html::a('Create Branches', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Create Branches', [
+            'value'=>Url::to('index.php?r=branches/create'),
+            'class' => 'btn btn-success',
+            'id'=>'modalButton'])
+        ?>
     </p>
+
+    <!--创建modal-->
+    <?php
+    Modal::begin([
+        'header' => '<h4>Branches</h4>',
+        'id' => 'modal',
+        'size' => 'modal-lg',    //这是大号的意思，可以写小号（-sm）
+    ]);
+    echo "<div id='modalContent'></div>";
+    Modal::end();
+    ?>
+    <!--Pop up 弹出层效果结束    -->
+
+
 
 <!-- 使用 Pjax 开始-->
 <!-- 使用Pjax 指的是整个页面不用刷新，就进行了搜索，燕十八说：pjax 并不是解决 ajax 跨页面的问题，他没有用到XHR-->

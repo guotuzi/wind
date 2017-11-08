@@ -73,7 +73,7 @@ class BranchesController extends Controller
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->branch_id]);
             } else {
-                return $this->render('create', [
+                return $this->renderAjax('create', [
                     'model' => $model,
                 ]);
             }
