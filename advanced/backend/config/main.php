@@ -28,6 +28,7 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
+
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -62,7 +63,12 @@ return [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,     //这句一定有，false发送邮件，true只是生成邮件在runtime文件夹下，不发邮件
-        ]
+        ],
+
+        // 创建自己的 component
+        'MyComponent' => [
+            'class' => 'backend\components\MyComponent'
+        ],
 
 
 

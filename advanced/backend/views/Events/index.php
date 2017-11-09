@@ -29,8 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-
-
     <!--使用fullCalender 开始， 代替原来的表格（ GridView::widget）-->
 
     <?= yii2fullcalendar\yii2fullcalendar::widget(array(

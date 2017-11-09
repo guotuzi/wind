@@ -18,7 +18,6 @@ $(function(){
     });
 
 
-
     /**
      * branches->create 的弹出层 Pop up
      * 当点击create 按钮的时候触发

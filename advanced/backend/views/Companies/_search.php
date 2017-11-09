@@ -17,18 +17,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'globalSearch') ?>    <!--globalSearch 全文搜索框, 替代后面被注释掉的搜索框-->
 
-<!--    --><?//= $form->field($model, 'company_id') ?>
-
-<!--    --><?//= $form->field($model, 'company_name') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'company_email') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'company_address') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'company_created_date') ?>
-
-    <?php // echo $form->field($model, 'company_status') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
