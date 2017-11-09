@@ -73,17 +73,15 @@ class EventsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($date)
     {
         $model = new Events();
-
+        $model->created_date = $date;
         if ($model->load(Yii::$app->request->post())) {
-
-            $model->created_date = date('Y-m-d H:m:s');
             $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);    // 重定向，定向到index页面了。调用了 actionIndex
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
