@@ -40,11 +40,6 @@ class CompaniesController extends Controller
     {
         $searchModel = new CompaniesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        /*
-         //试用自己创建的 component
-        Yii::$app->MyComponent->hello();
-        die();*/
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

@@ -60,6 +60,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /*
+        //试用自己创建的 component
+        Yii::$app->MyComponent->hello();
+        die();
+        echo Yii::$app->MyComponent->currencyConvert('USD','RMB', 100);
+        die(); */
         return $this->render('index');
     }
 
