@@ -13,7 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="companies-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <!--顶部的搜索框，打开后，是_search.php的内容此处修改成 global search 搜索-->
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Companies', ['create'], ['class' => 'btn btn-success']) ?>
