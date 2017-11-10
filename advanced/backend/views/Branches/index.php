@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;     //使用 pop up 弹出框的
 use yii\helpers\Url;
@@ -49,6 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'export' => false,
+//        'Pjax' => true,
 
         // 添加背景色开始
         'rowOptions'=>function($model){
@@ -68,7 +70,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=> 'companies_company_id',   //添加搜索框
                     'value' => 'companiesCompany.company_name',
             ],
-            'branch_name',
+
+            // 使用 yii2-editable 开始
+            [
+                    'class' => 'kartik\grid\EditableColumn',
+                    'header' => 'Branch Name',
+                    'attribute' => 'branch_name',
+                    'value' => function($model){
+                            return $model->branch_name;
+                    }
+            ],
+            // 使用 yii2-editable 结束
+
             'branch_address',
             'branch_created_date',
             'branch_status',
