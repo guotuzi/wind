@@ -70,6 +70,13 @@ return [
             'class' => 'backend\components\MyComponent'
         ],
 
+        // 模板和js/css 冲突， 单独配置
+//        'assetManager' => [
+//            'assetMap' => [
+//                'bootstrap.js' => '@web/js/bootstrap/js/bootstrap.min.js',
+//            ],
+//        ],
+
 
 
         /*

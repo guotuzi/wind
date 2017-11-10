@@ -25,12 +25,12 @@ class LoginAsset extends AssetBundle
         'js/main.js',
         'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js',
         'https://oss.maxcdn.com/respond/1.4.2/respond.min.js',
-        'bower_components/jquery/dist/jquery.min.js',
+//        'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'plugins/iCheck/icheck.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',    // 这个不能注释，因为username 和 password 不为空，需要这个类；
-        //'yii\bootstrap\BootstrapAsset',
+//        'yii\bootstrap\BootstrapAsset',
     ];
 }

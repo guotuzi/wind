@@ -12,7 +12,6 @@ class DashboardAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/bootstrap.min.css',
         'bower_components/bootstrap/dist/css/bootstrap.min.css',
         'bower_components/font-awesome/css/font-awesome.min.css',
         'bower_components/Ionicons/css/ionicons.min.css',
@@ -27,10 +26,9 @@ class DashboardAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/bootstrap/bootstrap.min.js',
         '//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js',
         '//oss.maxcdn.com/respond/1.4.2/respond.min.js',
-        'bower_components/jquery/dist/jquery.min.js',
+//        'bower_components/jquery/dist/jquery.min.js',
         'bower_components/jquery-ui/jquery-ui.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'bower_components/raphael/raphael.min.js',
@@ -53,6 +51,6 @@ class DashboardAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-//        'yii\bootstrap\BootstrapAsset',   //和上面的内容有冲突，关掉
+        //'yii\bootstrap\BootstrapAsset',   //和上面的内容有冲突，关掉
     ];
 }
