@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use backend\models\Companies;
 use kartik\select2\Select2;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Branches */
@@ -13,7 +14,13 @@ use kartik\select2\Select2;
 
 <div class="branches-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+            'id' => $model->formName(),
+            'enableAjaxValidation' => true,      // ajax 验证；
+            'validationUrl' => Url::toRoute('branches/validation'),    //将验证指向一个专门验证的函数
+        ]
+
+    ); ?>
 
     <!--select 2 使用开始-->
     <?= $form->field($model, 'companies_company_id')->widget(Select2::classname(), [

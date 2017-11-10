@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use kartik\form\ActiveForm;
 use Yii;
 use backend\models\Branches;
 use backend\models\BranchesSearch;
@@ -131,6 +132,7 @@ class BranchesController extends Controller
         if( Yii::$app->user->can( 'create-branch') )
         {
             $model = new Branches();
+
             if ($model->load(Yii::$app->request->post())) {
                 $model->branch_created_date = date('Y-m-d H:m:s');    //添加日期
                 $model->save();
@@ -145,6 +147,23 @@ class BranchesController extends Controller
                 throw new ForbiddenHttpException;
             }
     }
+
+    /**
+     * create 页面 branch_name 的ajax 验证
+     */
+    public function actionValidation(){
+        $model = new Branches();
+
+        // ajax 验证
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = 'json';
+            return ActiveForm::validate($model);
+        }
+    }
+
+
+
 
     /**
      * Updates an existing Branches model.
