@@ -67,6 +67,47 @@ class BranchesController extends Controller
         ]);
     }
 
+
+    /**
+     * 下载PHPExcel 扩展
+     * yii2 上传 Excel 表格
+     */
+    public function actionImportExcel()
+    {
+        $inputFile = 'Uploads/branche_file.xlsx';
+        try{
+            $inputFileType = \PHPExcel_IOFactory::identify($inputFile);   //这个斜杠不能丢，表示去外部找扩展的意思
+            $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($inputFile);
+
+        } catch (Exception $e){
+            die( 'Error' );
+        }
+        $sheet = $objPHPExcel->getSheet(0);
+        $hightestRow = $sheet->getHighestRow();
+        //print_r($hightestRow); exit;
+        $hightestColumn = $sheet->getHighestColumn();
+
+        for( $row=1; $row <= $hightestRow; $row++ ){
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $hightestColumn . $row, NULL, TRUE, FALSE);
+
+            if($row == 1){
+                continue;
+            }
+            $branch = new Branches();
+            $branch->branch_id = $rowData[0][0];
+            $branch-> companies_company_id = $rowData[0][1]	;
+            $branch-> 	branch_name = $rowData[0][2];
+            $branch-> 	branch_address = $rowData[0][3];
+            $branch-> branch_created_date = date('Y-m-d H:i:s');
+            $branch-> branch_status = $rowData[0][4];
+            $branch->save();
+        }
+        die('OK');
+    }
+
+
+
     /**
      * Displays a single Branches model.
      * @param integer $id

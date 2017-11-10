@@ -5,6 +5,7 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;     //使用 pop up 弹出框的
 use yii\helpers\Url;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\BranchesSearch */
@@ -43,7 +44,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<!-- 使用 Pjax 开始-->
+    <!-- 使用 yii2-export 开始-->
+    <?php
+    $gridColumns = [
+//        ['class' => 'yii\grid\SerialColumn'],
+        'branch_name',
+        'branch_address',
+        'branch_created_date',
+        'branch_status',
+//        ['class' => 'yii\grid\ActionColumn'],
+    ];
+
+    // Renders a export dropdown menu
+    echo ExportMenu::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumns
+    ]);
+
+    ?>
+    <!-- 使用 yii2-export 结束-->
+
+
+    <!-- 使用 Pjax 开始-->
 <!-- 使用Pjax 指的是整个页面不用刷新，就进行了搜索，燕十八说：pjax 并不是解决 ajax 跨页面的问题，他没有用到XHR-->
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
