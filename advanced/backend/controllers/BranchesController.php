@@ -221,6 +221,33 @@ class BranchesController extends Controller
     }
 
 
+    /**
+     * dropZone 的使用，上传文件的
+     * @return
+     */
+    public function actionUpload()
+    {
+        $fileName = 'file';
+        $uploadPath = 'uploads';
+
+        if (isset($_FILES[$fileName])) {
+            $file = \yii\web\UploadedFile::getInstanceByName($fileName);
+
+            //Print file data
+            //print_r($file);
+
+            if ($file->saveAs($uploadPath . '/' . $file->name)) {
+                //Now save file data to database
+
+                echo Json::encode($file);
+            }
+        } else {
+            return $this->render('upload');
+        }
+        return false;
+    }
+
+
 
     /**
      * Finds the Branches model based on its primary key value.

@@ -26,7 +26,8 @@
         "philippfrenzel/yii2fullcalendar": "*",
         "kartik-v/yii2-editable": "@dev",
         "moonlandsoft/yii2-phpexcel": "*",
-        "kartik-v/yii2-export": "@dev"
+        "kartik-v/yii2-export": "@dev",
+        "perminder-klair/yii2-dropzone": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
