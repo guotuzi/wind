@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'set-cookie', 'show-cookie'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -52,6 +52,25 @@ class SiteController extends Controller
             ],
         ];
     }
+
+
+    /**
+     * 设置cookie
+     */
+public function actionSetCookie(){
+    $cookie = new yii\web\Cookie([
+        'name' => 'test',
+        'value' => 'test cookie value'
+    ]);
+    Yii::$app->getResponse()->getCookies()->add($cookie);
+}
+
+public function actionShowCookie(){
+    if(Yii::$app->getRequest()->getCookies()->has('test')){
+        print_r(Yii::$app->getRequest()->getCookies()->getValue('test'));
+    }
+}
+
 
     /**
      * Displays homepage.
