@@ -70,15 +70,18 @@ return [
             'class' => 'backend\components\MyComponent'
         ],
 
+
+        /*
         // 模板和js/css 冲突， 单独配置
-//        'assetManager' => [
-//            'assetMap' => [
-//                'bootstrap.js' => '@web/js/bootstrap/js/bootstrap.min.js',
-//            ],
-//        ],
+        'assetManager' => [
+            'assetMap' => [
+                'bootstrap.js' => '@web/js/bootstrap/js/bootstrap.min.js',
+            ],
+        ],
+        */
 
 
-
+        // URL 美化
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -88,5 +91,11 @@ return [
         ],
         */
     ],
+
+    // 每次请求之前，都要调用这个东西，检测是否有登录
+    'as beforeRequest' => [
+        'class'=>'backend\components\checkIfLoggedIn',
+    ],
+
     'params' => $params,
 ];

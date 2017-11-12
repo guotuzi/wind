@@ -21,6 +21,7 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
+                    //允许认证用户
                     [
                         'actions' => ['login', 'error'],
                         'allow' => true,
@@ -30,12 +31,13 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    // 默认禁止其他用户
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post'],    // 只允许 post 方式访问
                 ],
             ],
         ];
