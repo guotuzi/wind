@@ -38,7 +38,7 @@ class Companies extends \yii\db\ActiveRecord
             [['company_created_date'], 'safe'],
             [['company_status'], 'string'],
             [['company_name', 'company_email', 'company_address', 'logo'], 'string', 'max' => 100],
-            [['file'], 'file'],
+            [['file'], 'image', 'minHeight'=> '1024', 'minWidth'=> '1024'],    //验证，上传图片的大小
         ];
     }
 
