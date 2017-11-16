@@ -1,9 +1,20 @@
 // 这个文件的效果是全局的
 
 $(function(){
-    /**
-     *  events 事件页面的 pop up 用的；
-     */
+
+    // 多语言
+    $(document).on('click', '.language', function(){
+        var lang = $(this).attr('id');
+
+        $.post('index.php?r=site/language', {'lang': lang} , function (data) {
+            location.reload();
+        } );
+
+    });
+
+
+
+
 //日历js
     $(document).on("click",'.fc-day',function(){      //事件托管(document, 找到整个页面)
         var url = 'index.php?r=events/create';

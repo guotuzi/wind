@@ -23,7 +23,7 @@ class SiteController extends Controller
                 'rules' => [
                     //允许认证用户
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'language'],   //权限啊，权限啊！！！
                         'allow' => true,
                     ],
                     [
@@ -124,4 +124,20 @@ public function actionShowCookie(){
 
         return $this->goHome();
     }
+
+
+    //多语言
+    public function actionLanguage(){
+        if(isset($_POST['lang'])){
+            Yii::$app->language = $_POST['lang'];
+            $cookie = new yii\web\Cookie([
+                'name' => 'lang',
+                'value' => $_POST['lang'],
+            ]);
+            Yii::$app->getResponse()->getCookies()->add($cookie);
+        }
+    }
+
+
+
 }

@@ -25,6 +25,24 @@ return [
 
     ],
     'components' => [
+        # 多语言
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+//                    'basePath' => '@common/messages',
+                     'sourceLanguage' => 'en',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
+
+
+
+
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -94,7 +112,8 @@ return [
 
     // 每次请求之前，都要调用这个东西，检测是否有登录
     'as beforeRequest' => [
-        'class'=>'backend\components\checkIfLoggedIn',
+//        'class'=>'backend\components\checkIfLoggedIn',
+        'class'=>'backend\components\changeLanguage',
     ],
 
     'params' => $params,
